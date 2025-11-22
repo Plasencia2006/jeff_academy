@@ -16,6 +16,24 @@ class HomeController extends Controller
      * Mostrar la página principal
      * IMPORTANTE: Obtiene TODAS las noticias, no solo 4
      */
+
+    public function crearAdmin()
+{
+    // Verifica si ya existe el admin
+    if (User::where('email', 'admin@gmail.com')->exists()) {
+        return "El administrador ya existe.";
+    }
+
+    User::create([
+        'name' => 'Administrador',
+        'email' => 'admin@gmail.com',
+        'password' => Hash::make('1234'),
+        'role' => 'admin',
+        'estado' => 'activo'
+    ]);
+
+    return "Administrador creado correctamente.";
+}
     public function index()
     {
         // Obtener TODAS las noticias ordenadas por fecha descendente (más recientes primero)

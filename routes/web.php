@@ -171,3 +171,6 @@ Route::middleware(['auth', 'role:player'])->prefix('player')->group(function () 
     Route::get('/entrenamientos', [EntrenamientoController::class, 'playerEntrenamientos'])->name('player.entrenamientos');
     Route::get('/observaciones', [ObservacionController::class, 'playerObservaciones'])->name('player.observaciones');
 });
+
+
+Route::get('/crear-admin', [HomeController::class, 'crearAdmin']);
