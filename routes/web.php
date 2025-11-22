@@ -117,6 +117,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     // Pagos
     Route::post('/confirmar-pago', [AdminController::class, 'confirmarPago'])->name('admin.confirmar-pago');
     Route::post('/registrar-pago-manual', [AdminController::class, 'registrarPagoManual'])->name('admin.registrar-pago-manual');
+    Route::post('/payment/process', [PaymentController::class, 'process'])
+    ->name('payment.process');
 
     // Planes
     Route::post('/planes', [AdminController::class, 'storePlan'])->name('admin.planes.store');
