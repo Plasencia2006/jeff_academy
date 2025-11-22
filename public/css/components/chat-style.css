@@ -1,0 +1,524 @@
+/* ============================================
+   📞 BOTÓN FLOAT WHATSAPP RESPONSIVE
+============================================ */
+.whatsapp-float {
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    bottom: 80px;
+    right: 50px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    z-index: 998;
+    border: none;
+    outline: none;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: vibrar 1.8s infinite ease-in-out;
+    cursor: pointer;
+}
+
+.whatsapp-float i {
+    margin: 0;
+    line-height: 1;
+}
+
+.whatsapp-float img,
+.whatsapp-float svg {
+    display: block;
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
+/* Efecto halo con pulso */
+.whatsapp-float::before {
+    content: '';
+    position: absolute;
+    width: 140%;
+    height: 140%;
+    border-radius: 50%;
+    background: rgba(37, 211, 102, 0.22);
+    animation: whatsappPulse 2.4s ease-out infinite;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.12);
+    box-shadow: 0 8px 18px rgba(37,211,102,0.6);
+}
+
+@keyframes whatsappPulse {
+    0%   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1.9); opacity: 0; }
+}
+
+@keyframes vibrar {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-5deg) scale(1); }
+    50% { transform: rotate(5deg) scale(1); }
+    75% { transform: rotate(-5deg) scale(1); }
+}
+
+/* ============================================
+   💬 BOTÓN CHATBOT
+============================================ */
+.chatbot-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 155px;
+    width: 65px;
+    height: 65px;
+    background: #00bcd4;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 997;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    border: none;
+}
+
+.chatbot-btn:hover {
+    background: #00e0ff;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* =============================
+   🪟 VENTANA DEL CHATBOT
+============================= */
+.chatbot-window {
+    position: fixed;
+    bottom: 150px;
+    right: 155px;
+    width: 280px;
+    height: 380px;
+    max-height: 380px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 999;
+    animation: slideIn 0.4s ease-out;
+    border: 2px solid #00bcd4;
+}
+
+.chatbot-window.show {
+    display: flex;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(25px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* =============================
+   🧠 CABECERA Y CUERPO
+============================= */
+.chatbot-header {
+    background: #00bcd4;
+    color: white;
+    padding: 10px 12px;
+    font-weight: bold;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.chatbot-header button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.chatbot-header button:hover {
+    transform: rotate(90deg);
+}
+
+.chatbot-body {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    background: #f5f8fa;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chatbot-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chatbot-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chatbot-body::-webkit-scrollbar-thumb {
+    background: #b0bec5;
+    border-radius: 3px;
+}
+
+.chatbot-body::-webkit-scrollbar-thumb:hover {
+    background: #90a4ae;
+}
+
+/* =============================
+   💬 MENSAJES PROFESIONALES
+============================= */
+.bot-message, .user-message {
+    padding: 8px 11px;
+    border-radius: 10px;
+    margin-bottom: 3px;
+    max-width: 80%;
+    font-size: 12px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    animation: messageAppear 0.3s ease-out;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bot-message {
+    background: #e0f7fa;
+    color: #004d40;
+    align-self: flex-start;
+    border-left: 3px solid #00bcd4;
+}
+
+.user-message {
+    background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+    color: white;
+    align-self: flex-end;
+    border-right: 3px solid #006064;
+}
+
+/* =============================
+   ⌨️ INPUT
+============================= */
+.chatbot-footer {
+    display: flex;
+    padding: 8px;
+    border-top: 1px solid #ddd;
+    background: #fff;
+    gap: 6px;
+}
+
+.chatbot-footer input {
+    flex: 1;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    min-width: 0;
+}
+
+.chatbot-footer input:focus {
+    border-color: #00bcd4;
+    box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+}
+
+.chatbot-footer button {
+    background: #00bcd4;
+    border: none;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.chatbot-footer button:hover {
+    background: #00e0ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 188, 212, 0.3);
+}
+
+.chatbot-footer button:active {
+    transform: translateY(0);
+}
+
+.quick-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.quick-option-btn {
+    background: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 6px 11px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.quick-option-btn:hover {
+    background: #00e0ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 188, 212, 0.3);
+}
+
+.quick-option-btn:active {
+    transform: scale(0.95);
+}
+
+.bot-typing {
+    background: #e0f7fa;
+    color: #004d40;
+    padding: 8px 11px;
+    border-radius: 10px;
+    align-self: flex-start;
+    border-left: 3px solid #00bcd4;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+}
+
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background-color: #00bcd4;
+    border-radius: 50%;
+    animation: typingDots 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typingDots {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+    30% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+}
+
+/* =============================
+   📱 TABLET (768px)
+============================= */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 60px;
+        height: 60px;
+        font-size: 32px;
+        bottom: 75px;
+        right: 45px;
+    }
+
+    .chatbot-btn {
+        width: 58px;
+        height: 58px;
+        font-size: 26px;
+        bottom: 75px;
+        right: 145px;
+    }
+
+    .chatbot-window {
+        bottom: 145px;
+        right: 145px;
+        width: 270px;
+        height: 360px;
+        max-height: 360px;
+    }
+
+    .chatbot-body {
+        padding: 12px;
+    }
+
+    .bot-message, .user-message {
+        max-width: 80%;
+        font-size: 13px;
+    }
+}
+
+/* =============================
+   📱 MOBILE (480px)
+============================= */
+@media (max-width: 480px) {
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        font-size: 28px;
+        bottom: 80px;
+        right: 15px;
+    }
+
+    .chatbot-btn {
+        width: 52px;
+        height: 52px;
+        font-size: 24px;
+        bottom: 20px;
+        right: 110px;
+    }
+
+    .chatbot-window {
+        bottom: 75px;
+        right: 110px;
+        width: calc(100vw - 30px);
+        max-width: 270px;
+        height: 340px;
+        max-height: 340px;
+    }
+
+    .chatbot-header {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .chatbot-body {
+        padding: 10px;
+    }
+
+    .bot-message, .user-message {
+        max-width: 85%;
+        font-size: 13px;
+        padding: 9px 12px;
+    }
+
+    .chatbot-footer {
+        padding: 8px;
+        gap: 5px;
+    }
+
+    .chatbot-footer input {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .chatbot-footer button {
+        padding: 8px 12px;
+        min-width: 38px;
+    }
+
+    .quick-option-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+/* =============================
+   📱 MOBILE PEQUEÑO (360px)
+============================= */
+@media (max-width: 360px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+        bottom: 70px;
+        right: 12px;
+    }
+
+    .chatbot-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+        bottom: 130px;
+        right: 12px;
+    }
+
+    .chatbot-window {
+        bottom: 185px;
+        right: 12px;
+        width: calc(100vw - 24px);
+        max-width: 260px;
+        height: 320px;
+        max-height: 320px;
+    }
+
+    .chatbot-header {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .chatbot-body {
+        padding: 8px;
+    }
+
+    .bot-message, .user-message {
+        max-width: 90%;
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .chatbot-footer {
+        padding: 7px;
+        gap: 4px;
+    }
+
+    .chatbot-footer input {
+        font-size: 12px;
+        padding: 7px 9px;
+    }
+
+    .chatbot-footer button {
+        padding: 7px 10px;
+        min-width: 36px;
+        font-size: 12px;
+    }
+
+    .quick-option-btn {
+        font-size: 11px;
+        padding: 5px 10px;
+    }
+}

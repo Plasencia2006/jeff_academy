@@ -1,0 +1,693 @@
+/* ========================================
+   🔷 FOOTER PRINCIPAL - ESTILOS BASE
+======================================== */
+
+.footer {
+    background: linear-gradient(135deg, #0a2f23 0%, #0f4c3a 100%);
+    color: #ffffff;
+    padding: 50px 0 20px;
+    margin-top: 0;
+}
+
+.footer .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+/* ========================================
+   📋 FOOTER CONTENT - GRID LAYOUT
+======================================== */
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   📌 FOOTER SECTION TITLES
+======================================== */
+
+.footer-section h4 {
+    color: #4ade80;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 45px;
+    height: 2px;
+    background: linear-gradient(90deg, #4ade80, #86efac);
+    border-radius: 2px;
+}
+
+/* ========================================
+   📝 FOOTER TEXT
+======================================== */
+
+.footer-section p {
+    color: #d1d5db;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+}
+
+/* ========================================
+   🎯 FOOTER LOGO
+======================================== */
+
+.footer-logo {
+    margin-top: 12px;
+}
+
+.footer-logo img {
+    max-width: 90px;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.footer-logo img:hover {
+    transform: scale(1.05);
+}
+
+/* ========================================
+   🔗 FOOTER LINKS
+======================================== */
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #d1d5db;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.footer-section ul li a:hover {
+    color: #4ade80;
+    padding-left: 6px;
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+}
+
+.footer-section ul li a i {
+    font-size: 0.9rem;
+    width: 18px;
+    text-align: center;
+    color: #4ade80;
+    transition: transform 0.3s ease;
+}
+
+.footer-section ul li a:hover i {
+    transform: rotate(20deg);
+}
+
+/* ========================================
+   ☎️ CONTACT INFO
+======================================== */
+
+.contact-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contact-info li {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+}
+
+.contact-info i {
+    color: #4ade80;
+    font-size: 1rem;
+    margin-top: 3px;
+    min-width: 20px;
+    flex-shrink: 0;
+}
+
+.contact-info span {
+    color: #d1d5db;
+    line-height: 1.5;
+    font-size: 0.88rem;
+}
+
+/* ========================================
+   🌐 SOCIAL LINKS
+======================================== */
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    width: 42px;
+    height: 42px;
+    background: transparent;
+    border: 2px solid #4ade80;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4ade80;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    background: #4ade80;
+    color: #0a2f23;
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: 0 6px 16px rgba(74, 222, 128, 0.4);
+}
+
+/* ========================================
+   💳 PAYMENT SECTION
+======================================== */
+
+.payment-section {
+    background: transparent;
+    padding: 0;
+}
+
+.payment-subtitle {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    margin: 10px 0 16px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    justify-items: center;
+    align-items: center;
+}
+
+.payment-item {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.payment-item:hover {
+    background: rgba(74, 222, 128, 0.1);
+    border-color: #4ade80;
+    transform: scale(1.05);
+}
+
+.payment-item img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    filter: brightness(1.2) contrast(1.1);
+    transition: filter 0.3s ease;
+}
+
+.payment-item:hover img {
+    filter: brightness(1.4) contrast(1.2);
+}
+
+/* ========================================
+   📍 FOOTER BOTTOM
+======================================== */
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(74, 222, 128, 0.25);
+    margin-top: 20px;
+}
+
+.footer-bottom p {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    margin: 6px 0;
+    line-height: 1.5;
+}
+
+.footer-credits {
+    font-size: 0.75rem !important;
+    margin-top: 8px !important;
+}
+
+.footer-credits i {
+    color: #ff6b6b;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+}
+
+/* ========================================
+   📱 RESPONSIVE - TABLET (601px - 768px)
+======================================== */
+
+@media (max-width: 768px) and (min-width: 601px) {
+    .footer {
+        padding: 40px 0 15px;
+    }
+
+    .footer .container {
+        padding: 0 25px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 35px;
+        margin-bottom: 25px;
+    }
+
+    .footer-section h4 {
+        font-size: 0.93rem;
+        margin-bottom: 15px;
+    }
+
+    .footer-section p {
+        font-size: 0.88rem;
+        margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+        font-size: 0.88rem;
+    }
+
+    .contact-info span {
+        font-size: 0.88rem;
+    }
+
+    .payment-item {
+        aspect-ratio: 16/9;
+    }
+
+    .footer-bottom p {
+        font-size: 0.8rem;
+    }
+}
+
+/* ========================================
+   📱 RESPONSIVE - SMALL TABLET (481px - 600px)
+======================================== */
+
+@media (max-width: 600px) and (min-width: 481px) {
+    .footer {
+        padding: 40px 0 15px;
+    }
+
+    .footer .container {
+        padding: 0 24px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-bottom: 20px;
+    }
+
+    .footer-section h4 {
+        font-size: 0.93rem;
+        margin-bottom: 15px;
+    }
+
+    .footer-section p {
+        font-size: 0.88rem;
+        margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+        font-size: 0.88rem;
+    }
+
+    .contact-info span {
+        font-size: 0.88rem;
+    }
+
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .payment-methods {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer-bottom p {
+        font-size: 0.78rem;
+    }
+}
+
+/* ========================================
+   📱 RESPONSIVE - MOBILE (401px - 480px)
+======================================== */
+
+@media (max-width: 480px) and (min-width: 401px) {
+    .footer {
+        padding: 38px 0 14px;
+    }
+
+    .footer .container {
+        padding: 0 20px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        margin-bottom: 20px;
+    }
+
+    .footer-section h4 {
+        font-size: 0.91rem;
+        margin-bottom: 14px;
+    }
+
+    .footer-section p {
+        font-size: 0.86rem;
+        margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+        font-size: 0.86rem;
+    }
+
+    .contact-info span {
+        font-size: 0.86rem;
+    }
+
+    .social-links {
+        gap: 10px;
+    }
+
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .payment-methods {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    .footer-bottom p {
+        font-size: 0.76rem;
+    }
+}
+
+/* ========================================
+   📱 RESPONSIVE - SMALL MOBILE (361px - 400px)
+======================================== */
+
+@media (max-width: 400px) and (min-width: 361px) {
+    .footer {
+        padding: 35px 0 13px;
+    }
+
+    .footer .container {
+        padding: 0 18px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 18px;
+    }
+
+    .footer-section h4 {
+        font-size: 0.89rem;
+        margin-bottom: 14px;
+    }
+
+    .footer-section p {
+        font-size: 0.84rem;
+        margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+        font-size: 0.84rem;
+    }
+
+    .contact-info span {
+        font-size: 0.84rem;
+    }
+
+    .social-links a {
+        width: 38px;
+        height: 38px;
+        font-size: 0.95rem;
+    }
+
+    .payment-item {
+        aspect-ratio: auto;
+    }
+
+    .footer-bottom p {
+        font-size: 0.75rem;
+    }
+}
+
+/* ========================================
+   📱 RESPONSIVE - TINY MOBILE (321px - 360px)
+======================================== */
+
+@media (max-width: 360px) and (min-width: 321px) {
+    .footer {
+        padding: 32px 0 12px;
+    }
+
+    .footer .container {
+        padding: 0 16px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 16px;
+    }
+
+    .footer-section h4 {
+        font-size: 0.87rem;
+        margin-bottom: 13px;
+    }
+
+    .footer-section p {
+        font-size: 0.82rem;
+        margin-bottom: 11px;
+    }
+
+    .footer-section ul li a {
+        font-size: 0.82rem;
+    }
+
+    .contact-info span {
+        font-size: 0.82rem;
+    }
+
+    .social-links a {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+
+    .footer-bottom p {
+        font-size: 0.72rem;
+    }
+}
+
+/* ========================================
+   📱 RESPONSIVE - EXTRA SMALL (<= 320px)
+======================================== */
+
+@media (max-width: 320px) {
+    .footer {
+        padding: 30px 0 10px;
+    }
+
+    .footer .container {
+        padding: 0 15px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-bottom: 15px;
+    }
+
+    .footer-section h4 {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+    }
+
+    .footer-section p {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+        font-size: 0.8rem;
+    }
+
+    .contact-info span {
+        font-size: 0.8rem;
+    }
+
+    .social-links a {
+        width: 34px;
+        height: 34px;
+        font-size: 0.85rem;
+    }
+
+    .footer-bottom p {
+        font-size: 0.7rem;
+    }
+}
+
+/* ========================================
+   🖥️ RESPONSIVE - DESKTOP (769px - 992px)
+======================================== */
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .footer {
+        padding: 40px 0 15px;
+    }
+
+    .footer .container {
+        padding: 0 28px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+        gap: 35px;
+        margin-bottom: 20px;
+    }
+
+    .footer-section h4 {
+        font-size: 0.94rem;
+        margin-bottom: 15px;
+    }
+
+    .footer-section p {
+        font-size: 0.88rem;
+        margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+        font-size: 0.88rem;
+    }
+
+    .contact-info span {
+        font-size: 0.88rem;
+    }
+}
+
+/* ========================================
+   🖥️ RESPONSIVE - LARGE DESKTOP (993px - 1200px)
+======================================== */
+
+@media (min-width: 993px) and (max-width: 1200px) {
+    .footer {
+        padding: 40px 0 15px;
+    }
+
+    .footer .container {
+        padding: 0 29px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+        gap: 38px;
+        margin-bottom: 20px;
+    }
+
+    .footer-section h4 {
+        font-size: 0.94rem;
+        margin-bottom: 15px;
+    }
+}
+
+/* ========================================
+   🖥️ RESPONSIVE - FULL DESKTOP (>= 1201px)
+======================================== */
+
+@media (min-width: 1201px) {
+    .footer {
+        padding: 50px 0 20px;
+        margin-top: 0;
+    }
+
+    .footer .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 30px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+        gap: 40px;
+        margin-bottom: 30px;
+    }
+
+    .footer-section h4 {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
+    .footer-section p {
+        font-size: 0.88rem;
+        margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+        font-size: 0.88rem;
+    }
+
+    .contact-info span {
+        font-size: 0.88rem;
+    }
+}
