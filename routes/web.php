@@ -91,7 +91,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::put('/usuarios/{id}', [AdminController::class, 'updateUsuario'])->name('usuarios.update');
     Route::put('/usuarios/{id}/toggle', [AdminController::class, 'destroyUsuario'])->name('usuarios.toggle');
 
-    Route::post('/registro', [RegistroController::class, 'store'])->name('registro.store');
+    Route::post('/registro', [RegistroController::class, 'store'])->name('admin.registro.store');
+
 
     // Actualizar datos básicos (nombre, email, telefono, rol)
     Route::put('/usuarios/{id}', [AdminController::class, 'updateUsuario'])->name('usuarios.update');
