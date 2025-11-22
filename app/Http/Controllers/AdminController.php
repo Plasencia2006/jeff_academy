@@ -17,6 +17,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use App\Mail\EnviarCredencialesMail;
 
 class AdminController extends Controller
 {
@@ -911,7 +912,7 @@ public function enviarCredenciales(Request $request)
         $usuario = User::findOrFail($request->usuario_id);
 
         Mail::to($usuario->email)->send(new EnviarCredencialesMail(
-            $usuario->name,
+            $usuario,
             $request->password,
             $request->mensaje
         ));
