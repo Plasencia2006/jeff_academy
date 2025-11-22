@@ -14,7 +14,7 @@ use App\Http\Controllers\CoachController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\PagoStripeController;
 use App\Http\Controllers\ReporteController;
-
+use App\Http\Controllers\PaymentController;
 /*
 |--------------------------------------------------------------------------
 | Rutas Públicas
@@ -114,11 +114,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::delete('/noticias/{id}', [AdminController::class, 'destroyNoticia'])->name('admin.noticias.destroy');
     Route::put('/noticias/{id}', [AdminController::class, 'updateNoticia'])->name('admin.noticias.update');
 
-    // Pagos
-    Route::post('/confirmar-pago', [AdminController::class, 'confirmarPago'])->name('admin.confirmar-pago');
-    Route::post('/registrar-pago-manual', [AdminController::class, 'registrarPagoManual'])->name('admin.registrar-pago-manual');
-    Route::post('/payment/process', [PaymentController::class, 'process'])
-    ->name('payment.process');
 
     // Planes
     Route::post('/planes', [AdminController::class, 'storePlan'])->name('admin.planes.store');
@@ -176,3 +171,12 @@ Route::middleware(['auth', 'role:player'])->prefix('player')->group(function () 
 
 
 Route::get('/crear-admin', [HomeController::class, 'crearAdmin']);
+
+ Route::post('/payment/process', [PagoStripeController::class, 'procesarPago'])
+    ->name('payment.process');
+
+Route::get('/payment/success', [PagoStripeController::class, 'pagoExitoso'])
+    ->name('payment.success');
+
+Route::get('/payment/cancel', [PagoStripeController::class, 'pagoCancelado'])
+    ->name('payment.cancel');
