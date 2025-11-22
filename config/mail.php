@@ -110,12 +110,16 @@ return [
     |
     */
 
-   'stream' => [
-    'ssl' => [
-        'allow_self_signed' => false, // ✅ Cambiar a false
-        'verify_peer' => true,        // ✅ Cambiar a true  
-        'verify_peer_name' => true,   // ✅ Cambiar a true
-        'cafile' => '/etc/ssl/certs/ca-certificates.crt',
+   'mailers' => [
+    'smtp' => [
+        'transport' => 'smtp',
+        'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+        'port' => env('MAIL_PORT', 587),
+        'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+        'username' => env('MAIL_USERNAME'),
+        'password' => env('MAIL_PASSWORD'),
+        'timeout' => 10, // Reducido a 10 segundos para Railway
+        'auth_mode' => null,
     ],
 
 
