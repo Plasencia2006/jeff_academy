@@ -29,7 +29,7 @@ Route::get('/noticias/{id}', [HomeController::class, 'noticiaShow'])->name('noti
 Route::get('/contacto', [HomeController::class, 'contacto'])->name('contacto');
 
 // Planes y Precios
-Route::get('/planes', [HomeController::class, 'planes'])->name('planes');
+
 
 // Inscripción pública (Vista)
 Route::get('/inscripcion', [HomeController::class, 'inscripcion'])->name('inscripcion');
