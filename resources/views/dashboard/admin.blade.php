@@ -2709,6 +2709,66 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<script>
+
+
+
+//<</-----------------------------------Para enviar el Gmail----------------------------------------------////>>>>
+// Función para enviar credenciales - VERSIÓN CORREGIDA
+// Versión alternativa más simple
+function enviarCredenciales(usuarioId) {
+    const boton = event.target;
+    const originalText = boton.innerHTML;
+
+    // Mostrar loading
+    boton.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Enviando...';
+    boton.disabled = true;
+
+    // Obtener datos del formulario
+    const password = document.getElementById('passwordParaEnviar' + usuarioId).value;
+    const mensaje = document.getElementById('mensajePersonalizado' + usuarioId).value;
+
+    // Crear form data
+    const formData = new FormData();
+    formData.append('password', password);
+    formData.append('mensaje', mensaje);
+    formData.append('usuario_id', usuarioId);
+
+    // Hacer la petición - USAR RUTA CON NOMBRE
+    fetch("/enviar-credenciales", {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('✅ Credenciales enviadas correctamente a ' + data.email);
+                // Cerrar modal
+                const modalElement = document.getElementById('compartirCredencialesModal' + usuarioId);
+                const modal = bootstrap.Modal.getInstance(modalElement);
+                modal.hide();
+            } else {
+                alert('❌ Error: ' + (data.message || 'No se pudo enviar el correo'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('❌ Error de conexión: ' + error.message);
+        })
+        .finally(() => {
+            // Restaurar botón
+            boton.innerHTML = originalText;
+            boton.disabled = false;
+        });
+}
+    
+</script>
+
 
 
 @endpush
