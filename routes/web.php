@@ -210,7 +210,7 @@ Route::middleware(['auth', 'role:player'])->prefix('player')->group(function () 
     // PERFIL
     Route::put('/perfil/update-image', [PlayerController::class, 'updateImage'])->name('player.update-image');
     Route::put('/perfil/update', [PlayerController::class, 'updateProfile'])->name('player.update-profile');
-    Route::put('/coach/perfil/update-image', [CoachController::class, 'updateImage'])->name('coach.perfil.update-image');
+    Route::put('/coach/perfil/update-image', [CoachController::class, 'updateImage'])->name('player.perfil.update-image');
 
     
     // ASISTENCIA Y RENDIMIENTO
