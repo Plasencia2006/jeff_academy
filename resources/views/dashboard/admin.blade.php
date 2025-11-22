@@ -2719,14 +2719,20 @@ function enviarCredenciales(usuarioId) {
     const originalText = boton.innerHTML;
 
     // Mostrar loading
-    boton.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Generando...';
+    boton.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Enviando...';
     boton.disabled = true;
 
-    // Solo necesitamos el usuario_id
-    const formData = new FormData();
-    formData.append('user_id', usuarioId); // ⚠️ CAMBIA 'usuario_id' por 'user_id'
+    // Obtener datos del formulario
+    const password = document.getElementById('passwordParaEnviar' + usuarioId).value;
+    const mensaje = document.getElementById('mensajePersonalizado' + usuarioId).value;
 
-    // Hacer la petición
+    // Crear form data
+    const formData = new FormData();
+    formData.append('password', password);
+    formData.append('mensaje', mensaje);
+    formData.append('usuario_id', usuarioId);
+
+    // Hacer la petición - USAR RUTA CON NOMBRE
     fetch("/enviar-credenciales", {
         method: 'POST',
         headers: {
@@ -2736,34 +2742,27 @@ function enviarCredenciales(usuarioId) {
         },
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // ✅ MOSTRAR CREDENCIALES EN ALERTA
-            const credenciales = data.credenciales || data.data;
-            const mensaje = `✅ Credenciales generadas exitosamente:\n\n📧 Email: ${credenciales.email}\n🔐 Contraseña: ${credenciales.password}\n\n📝 ${credenciales.instrucciones || 'Comparta estas credenciales con el usuario manualmente'}`;
-            
-            alert(mensaje);
-            
-            // Cerrar modal
-            const modalElement = document.getElementById('compartirCredencialesModal' + usuarioId);
-            if (modalElement) {
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('✅ Credenciales enviadas correctamente a ' + data.email);
+                // Cerrar modal
+                const modalElement = document.getElementById('compartirCredencialesModal' + usuarioId);
                 const modal = bootstrap.Modal.getInstance(modalElement);
                 modal.hide();
+            } else {
+                alert('❌ Error: ' + (data.message || 'No se pudo enviar el correo'));
             }
-        } else {
-            alert('❌ Error: ' + (data.message || 'No se pudieron generar las credenciales'));
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('❌ Error de conexión: ' + error.message);
-    })
-    .finally(() => {
-        // Restaurar botón
-        boton.innerHTML = originalText;
-        boton.disabled = false;
-    });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('❌ Error de conexión: ' + error.message);
+        })
+        .finally(() => {
+            // Restaurar botón
+            boton.innerHTML = originalText;
+            boton.disabled = false;
+        });
 }
 </script>
 
