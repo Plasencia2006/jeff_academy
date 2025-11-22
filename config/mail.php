@@ -110,12 +110,15 @@ return [
     |
     */
 
-    'stream' => [
+   'stream' => [
     'ssl' => [
-        'allow_self_signed' => true,
-        'verify_peer' => false,
-        'verify_peer_name' => false,
+        'allow_self_signed' => false, // ✅ Cambiar a false
+        'verify_peer' => true,        // ✅ Cambiar a true  
+        'verify_peer_name' => true,   // ✅ Cambiar a true
+        'cafile' => '/etc/ssl/certs/ca-certificates.crt',
     ],
+
+
 ],
 
 ];
