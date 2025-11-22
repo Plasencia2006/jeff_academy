@@ -17,6 +17,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -905,36 +906,31 @@ class AdminController extends Controller
     // ENVIAR CREDENCIALES POR EMAIL
     // ============================================
 
-    public function enviarCredenciales(Request $request)
+  public function enviarCredenciales(Request $request)
     {
         try {
-            $usuario = User::findOrFail($request->usuario_id);
-
-            $data = [
-                'usuario' => $usuario,
-                'password_enviar' => $request->password,
-                'mensaje_personalizado' => $request->mensaje
-            ];
-
-            Mail::send('emails.credenciales', $data, function ($message) use ($usuario) {
-                $message->to($usuario->email, $usuario->name)
-                    ->subject('Credenciales de Acceso - ' . config('app.name'));
-            });
+            $user = User::findOrFail($request->user_id);
+            $password = Str::random(8); // ✅ Ahora Str funciona
+            
+            $user->password = Hash::make($password);
+            $user->save();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Credenciales enviadas correctamente',
-                'email' => $usuario->email
+                'credenciales' => [
+                    'email' => $user->email,
+                    'password' => $password,
+                    'instrucciones' => 'Copie y comparta estas credenciales con el usuario'
+                ]
             ]);
+            
         } catch (\Exception $e) {
-            Log::error('Error enviando credenciales: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
-                'message' => 'Error al enviar: ' . $e->getMessage()
+                'message' => 'Error: ' . $e->getMessage()
             ], 500);
         }
     }
-
     /**
      * Actualizar perfil del administrador
      */
