@@ -2711,8 +2711,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 
-
-
 //<</-----------------------------------Para enviar el Gmail----------------------------------------------////>>>>
 // Función para enviar credenciales - VERSIÓN CORREGIDA
 // Versión alternativa más simple
@@ -2766,7 +2764,6 @@ function enviarCredenciales(usuarioId) {
             boton.disabled = false;
         });
 }
-    
 </script>
 
 
