@@ -940,14 +940,13 @@
                                                   </div>
                                               </div>
                                               <div class="modal-footer">
-                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                      <i class="fas fa-times me-1"></i>Cancelar
-                                                  </button>
-                                                  <button type="button" class="btn btn-success" 
-                                                          onclick="enviarCredenciales({{ $usuario->id }})">
-                                                          <i class="fas fa-paper-plane me-1"></i>Enviar por Email
-                                                  </button>
-                                              </div>
+                                                   <button type="button" class="btn btn-success"
+                                                           onclick="enviarCredenciales(event, {{ $usuario->id }})">
+                                                       <i class="fas fa-paper-plane me-1"></i> Enviar Credenciales
+                                                   </button>
+                                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                </div>
+
                                           </div>
                                       </div>
                                   </div>
@@ -2711,28 +2710,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 
-//<</-----------------------------------Para enviar el Gmail----------------------------------------------////>>>>
-// Función para enviar credenciales - VERSIÓN CORREGIDA
-// Versión alternativa más simple
-function enviarCredenciales(usuarioId) {
+function enviarCredenciales(event, usuarioId) {
+    event.preventDefault();
     const boton = event.target;
     const originalText = boton.innerHTML;
 
-    // Mostrar loading
     boton.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Enviando...';
     boton.disabled = true;
 
-    // Obtener datos del formulario
     const password = document.getElementById('passwordParaEnviar' + usuarioId).value;
     const mensaje = document.getElementById('mensajePersonalizado' + usuarioId).value;
 
-    // Crear form data
     const formData = new FormData();
     formData.append('password', password);
     formData.append('mensaje', mensaje);
     formData.append('usuario_id', usuarioId);
 
-    // Hacer la petición - USAR RUTA CON NOMBRE
     fetch("/enviar-credenciales", {
         method: 'POST',
         headers: {
@@ -2742,28 +2735,27 @@ function enviarCredenciales(usuarioId) {
         },
         body: formData
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('✅ Credenciales enviadas correctamente a ' + data.email);
-                // Cerrar modal
-                const modalElement = document.getElementById('compartirCredencialesModal' + usuarioId);
-                const modal = bootstrap.Modal.getInstance(modalElement);
-                modal.hide();
-            } else {
-                alert('❌ Error: ' + (data.message || 'No se pudo enviar el correo'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('❌ Error de conexión: ' + error.message);
-        })
-        .finally(() => {
-            // Restaurar botón
-            boton.innerHTML = originalText;
-            boton.disabled = false;
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('✅ Credenciales enviadas correctamente a ' + data.email);
+            const modalElement = document.getElementById('compartirCredencialesModal' + usuarioId);
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+        } else {
+            alert('❌ Error: ' + (data.message || 'No se pudo enviar el correo'));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('❌ Error de conexión: ' + error.message);
+    })
+    .finally(() => {
+        boton.innerHTML = originalText;
+        boton.disabled = false;
+    });
 }
+
 </script>
 
 

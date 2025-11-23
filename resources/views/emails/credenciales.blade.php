@@ -15,12 +15,12 @@
         <h4 style="margin-top: 0;">Tus Credenciales:</h4>
         <p><strong>Nombre de Usuario:</strong> {{ $usuario->name }}</p>
         <p><strong>Email:</strong> {{ $usuario->email }}</p>
-        <p><strong>Contraseña:</strong> {{ $password }}</p>
+        <p><strong>Contraseña:</strong> {{ $password_enviar }}</p>
     </div>
 
-    @if(!empty($mensajePersonalizado))
+    @if(!empty($mensaje_personalizado))
     <div style="background: #e7f3ff; padding: 15px; border-radius: 5px; margin: 15px 0; border-left: 4px solid #17a2b8;">
-        <p><strong>Mensaje Personalizado:</strong><br>{{ $mensajePersonalizado }}</p>
+        <p><strong>Mensaje Personalizado:</strong><br>{{ $mensaje_personalizado }}</p>
     </div>
     @endif
 

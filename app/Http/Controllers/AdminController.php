@@ -906,30 +906,39 @@ class AdminController extends Controller
     // ENVIAR CREDENCIALES POR EMAIL
     // ============================================
 
-public function enviarCredenciales(Request $request)
-{
-    try {
-        $usuario = User::findOrFail($request->usuario_id);
+    // ============================================
+    // ENVIAR CREDENCIALES POR EMAIL
+    // ============================================
 
-        Mail::to($usuario->email)->send(new EnviarCredencialesMail(
-            $usuario,
-            $request->password,
-            $request->mensaje
-        ));
+    public function enviarCredenciales(Request $request)
+    {
+        try {
+            $usuario = User::findOrFail($request->usuario_id);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Credenciales enviadas correctamente',
-            'email' => $usuario->email
-        ]);
-    } catch (\Exception $e) {
-        Log::error('Error enviando credenciales: ' . $e->getMessage());
-        return response()->json([
-            'success' => false,
-            'message' => 'Error al enviar: ' . $e->getMessage()
-        ], 500);
+            $data = [
+                'usuario' => $usuario,
+                'password_enviar' => $request->password,
+                'mensaje_personalizado' => $request->mensaje
+            ];
+
+            Mail::send('emails.credenciales', $data, function ($message) use ($usuario) {
+                $message->to($usuario->email, $usuario->name)
+                    ->subject('Credenciales de Acceso - ' . config('app.name'));
+            });
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Credenciales enviadas correctamente',
+                'email' => $usuario->email
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error enviando credenciales: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al enviar: ' . $e->getMessage()
+            ], 500);
+        }
     }
-}
 
     /**
      * Actualizar perfil del administrador
