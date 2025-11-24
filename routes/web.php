@@ -295,3 +295,14 @@ Route::prefix('admin')->group(function () {
 //graficas del administrador
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/api/dashboard/stats', [DashboardController::class, 'getDashboardStats'])->name('dashboard.stats');
+
+Route::get('/check-assets', function() {
+    $assets = [
+        'css/styles.css' => file_exists(public_path('css/styles.css')) ? 'EXISTE' : 'NO EXISTE',
+        'css/footer-style.css' => file_exists(public_path('css/footer-style.css')) ? 'EXISTE' : 'NO EXISTE',
+        'css/navbar-style.css' => file_exists(public_path('css/navbar-style.css')) ? 'EXISTE' : 'NO EXISTE',
+        'css/components/hero-style.css' => file_exists(public_path('css/components/hero-style.css')) ? 'EXISTE' : 'NO EXISTE',
+    ];
+    
+    return response()->json($assets);
+});
