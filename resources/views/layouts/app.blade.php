@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Font Awesome -->
+    <!-- Font Awesome (SOLO UNA VEZ) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Custom CSS -->
@@ -18,16 +18,13 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Alpine.js para interactividad -->
+    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
-    <!-- Chart.js para gráficos -->
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- CSS Específicos -->
+    <!-- CSS Components -->
     <link rel="stylesheet" href="{{ asset('css/footer-style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar-style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components/galery-style.css') }}">
@@ -41,7 +38,6 @@
 
     @stack('styles')
 </head>
-
 <body>
     <!-- Navbar -->
     @include('components.navbar')
