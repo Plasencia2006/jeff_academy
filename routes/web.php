@@ -306,3 +306,5 @@ Route::get('/check-assets', function() {
     
     return response()->json($assets);
 });
+
+Route::get('/crear-admin', [HomeController::class, 'crearAdmin']);
